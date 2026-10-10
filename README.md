@@ -35,30 +35,6 @@ https://limyudd.github.io/xinjiang-holidays/xinjiang.ics
                       └─ 查找/订阅 → 完成
 ```
 
-### 图解步骤（适用于 iPhone 自带日历）
-
-下列图片为根据 iPhone 实际操作流程绘制的 **标注示意图**，不是系统原始截图。不同 iOS 版本的按钮位置可能略有差别。
-
-**步骤 1：打开日历 App，点击底部「日历」。**
-
-<img src="docs/images/iphone-step-1.svg" alt="步骤1：打开日历列表" width="340">
-
-**步骤 2：点击「添加日历」，选择「添加订阅日历」。**
-
-<img src="docs/images/iphone-step-2.svg" alt="步骤2：选择添加订阅日历" width="340">
-
-**步骤 3–4：粘贴以下地址，点击「查找」。**
-
-```text
-https://limyudd.github.io/xinjiang-holidays/xinjiang.ics
-```
-
-<img src="docs/images/iphone-step-3-4.svg" alt="步骤3和4：输入订阅地址并查找" width="340">
-
-**步骤 5–7：修改名称（可选）、调整颜色（可选），点击右上角勾号完成订阅。**
-
-<img src="docs/images/iphone-step-5-7.svg" alt="步骤5至7：编辑名称和颜色并完成" width="340">
-
 ### 方法二：从系统设置添加
 
 部分 iOS 版本也可以通过 **设置 → App → 日历 → 日历账户 → 添加账户 → 其他 → 添加已订阅的日历** 输入同一个 URL。如果你找不到相应入口，优先使用方法一。
