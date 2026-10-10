@@ -1,0 +1,18 @@
+{
+  "overrides": {
+    "2026": {
+      "rouzi": {
+        "date": "2026-03-21",
+        "holiday_start": "2026-03-20",
+        "holiday_end": "2026-03-22",
+        "source": "https://www.xinjiang.gov.cn/xinjiang/tzgg/202512/aaece21b6906443e8d50b981070764a8.shtml"
+      },
+      "guerbang": {
+        "date": "2026-05-27",
+        "holiday_start": "2026-05-27",
+        "holiday_end": "2026-05-31",
+        "source": "https://www.xinjiang.gov.cn/xinjiang/tzgg/202512/aaece21b6906443e8d50b981070764a8.shtml"
+      }
+    }
+  }
+}
