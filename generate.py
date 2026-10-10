@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 CALENDAR_YEARS = 15
 EVENTS = [
-    ("rouzi", 10, 1, "肉孜节（开斋节）"),
+    ("rouzi", 10, 1, "肉孜节"),
     ("guerbang", 12, 10, "古尔邦节"),
 ]
 EPOCH = dt.date(1970, 1, 1)
@@ -64,7 +64,7 @@ def main():
     overrides = official.get("overrides", {})
     lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Xinjiang Chinese Holiday Calendar//ZH",
              "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
-             "X-WR-CALNAME:新疆节假日", "X-WR-CALDESC:肉孜节及古尔邦节；官方与预测分开标注",
+             "X-WR-CALNAME:新疆节假日", "X-WR-CALDESC:新疆肉孜节及古尔邦节中文日历",
              "X-WR-TIMEZONE:Asia/Shanghai"]
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     # Broader Hijri year range, filtered by Gregorian year below.
@@ -81,17 +81,14 @@ def main():
                 if last < first or abs((actual - predicted).days) > 3:
                     raise ValueError(f"Invalid official override: {predicted.year}/{key}")
                 source = entry.get("source", "")
-                # Separate fixed-UID holiday block and festival day events.
-                add_event(lines, f"{predicted.year}-{key}-holiday", first, last + dt.timedelta(days=1),
-                          "休 · " + title + "（新疆官方放假）",
-                          f"官方假期：{first.isoformat()} 至 {last.isoformat()}。来源：{source}", stamp)
-                add_event(lines, f"{predicted.year}-{key}-festival", actual,
-                          actual + dt.timedelta(days=1), title,
-                          f"新疆官方确认节日。来源：{source}", stamp)
+                # One concise multi-day event; official status stays in event details.
+                add_event(lines, f"{predicted.year}-{key}-festival", first,
+                          last + dt.timedelta(days=1), title,
+                          f"节日：{actual.isoformat()}\\n新疆官方放假：{first.isoformat()} 至 {last.isoformat()}\\n来源：{source}", stamp)
             else:
                 add_event(lines, f"{predicted.year}-{key}-festival", predicted,
-                          predicted + dt.timedelta(days=1), "预计 · " + title,
-                          "基于伊斯兰民用表算历预测；当地观月/公告可能有1至2天差异，非官方放假安排。", stamp)
+                          predicted + dt.timedelta(days=1), title,
+                          "伊斯兰历推算日期，非官方放假安排；日期可能与当地公布的日期相差1至2天。", stamp)
     lines.append("END:VCALENDAR")
     out = ROOT / "docs" / "xinjiang.ics"
     out.parent.mkdir(parents=True, exist_ok=True)
